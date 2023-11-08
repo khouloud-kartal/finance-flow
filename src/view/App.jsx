@@ -5,6 +5,7 @@
 import Header from "./components/Header"
 import TopBar from "./components/TopBar"
 import Balance from "./components/Balance"
+import CategoriesDisplay from "./components/CategoriesDisplay"
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -15,9 +16,16 @@ function App() {
         <main>
           <section>
             <TopBar />
-            <aside>
-              <Balance />
-            </aside>
+            <div>
+              <aside>
+                <div>
+                  <Balance />
+                </div>
+                <div>
+                  <CategoriesDisplay />
+                </div>
+              </aside>
+            </div>
           </section>
         </main>
     </>
