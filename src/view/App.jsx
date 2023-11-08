@@ -4,6 +4,7 @@
 // import './assets/App.css'
 import Header from "./components/Header"
 import TopBar from "./components/TopBar"
+import Balance from "./components/Balance"
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -11,7 +12,14 @@ function App() {
   return (
     <>
       <Header />
-      <TopBar />
+        <main>
+          <section>
+            <TopBar />
+            <aside>
+              <Balance />
+            </aside>
+          </section>
+        </main>
     </>
   )
 }
