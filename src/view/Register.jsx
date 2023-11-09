@@ -11,9 +11,6 @@ const handleSubmit = async (e) => {
     const response = await fetch('http://localhost/finance-flow/src/view/actions/actions.php?register=true', 
                     {method: "POST", 
                     body: formData,
-                    headers : {
-                        'Access-Control-Allow-Origin ': 'http://localhost:5174/'
-                    }
                     });
     const responseData = await response.text();
 
