@@ -15,9 +15,7 @@ header('Access-Control-Allow-Credentials: true');
 
 $user = new UserController();
 
-if(isset($_GET['register'])){
-    
+if(isset($_GET['register'])){    
     $user->Register($_POST, $_FILES['image']);
-    // var_dump($_FILES['image']);
     echo $user->getMsg();
 }

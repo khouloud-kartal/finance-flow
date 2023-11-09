@@ -55,8 +55,8 @@ class UserController{
         }
     }
 
-    public function uploadImage($dossier, $file){
-        $path = "images/". $dossier . "/";
+    public function uploadImage($file){
+        $path = "../images/profile/";
         $fichier = basename($file['name']);
         
         if(move_uploaded_file($file['tmp_name'], $path . $fichier)){
@@ -66,7 +66,7 @@ class UserController{
 
     public function register($post, $file){
 
-        if($post['userName'] !== null && $post['password'] !== null && $post['confirmPassword'] !== null && $file['name'] !== null){
+        if($post['userName'] !== '' && $post['password'] !== '' && $post['confirmPassword'] !== ''){
             
             if($this->checkUserName($post['userName'])){
                 
@@ -81,12 +81,14 @@ class UserController{
                     $request = new UserModel();
                     $request->requestRegister($post, $file['name']);
 
-                    $this->uploadImage('profile', $file);
+                    $this->uploadImage($file);
                     
                     $this->msg = "You are regitered with success";
                     
                 }
 
+            }else{
+                $this->msg = "The user name already exists";
             }
 
         }
@@ -120,4 +122,21 @@ class UserController{
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////// GETTERS ///////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function getUserName(){
+        return $this->userName;
+    }
+
+    function getImage(){
+        return $this->image;
+    }
+
+    function getPassword(){
+        return $this->password;
+    }
+
+    function getMsg(){
+        return $this->msg;
+    }
+
 }
