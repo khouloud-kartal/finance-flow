@@ -2,8 +2,7 @@ function Header() {
     return (
         <>
             <header>
-                <h1>Bruh</h1>
-                <img src="" alt="logo" />
+                <img src="" alt="logo KIM finance" />
                 <nav>
                     <ul>
                         <li>
