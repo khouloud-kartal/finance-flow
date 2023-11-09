@@ -1,23 +1,19 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './assets/App.css'
-// import Header from "./components/Header"
-// import TopBar from "./components/TopBar"
-// import Balance from "./components/Balance"
-// import CategoriesDisplay from "./components/CategoriesDisplay"
-// import AddTransaction from "./components/AddTrasaction"
-// import FourLastestTransaction from "./components/FourLastestTransaction"
-import Index from "./components/pages"
+import Index from './components/pages';
+import Profile from './components/pages';
+import Header from './components/Header';
 
 let index = <Index />
+let profile = <Profile />
 
 function App() {
   const [page, setPage] = useState(index);
-
+   setPage(index)
   return (
     <>
+      <Header />
       {page}
+      {/* <Profile /> */}
     </>
   );
 }

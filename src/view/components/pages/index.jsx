@@ -9,7 +9,7 @@ import FourLastestTransaction from "../FourLastestTransaction"
 function Index() {
     return (
         <>
-        <Header />
+        {/* <Header /> */}
             <main>
                 <section>            
                     <TopBar />
