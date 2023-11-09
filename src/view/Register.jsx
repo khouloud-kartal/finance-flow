@@ -5,6 +5,8 @@ const handleSubmit = async (e) => {
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
 
+    console.log(image);
+
     const form = document.getElementById('registerForm');
 
     const formData = new FormData(form);

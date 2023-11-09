@@ -13,6 +13,11 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
 header('Access-Control-Allow-Credentials: true');
 
+$user = new UserController();
+
 if(isset($_GET['register'])){
-    var_dump('it is working');
+    
+    $user->Register($_POST, $_FILES['image']);
+    // var_dump($_FILES['image']);
+    echo $user->getMsg();
 }
