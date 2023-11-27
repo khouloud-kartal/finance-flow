@@ -10,7 +10,13 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    const image = e.target.image.value;
+    const userName = e.target.userName.value;  
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+
+    console.log(image);
+
     const form = e.target;
 
     const formData = new FormData(form);

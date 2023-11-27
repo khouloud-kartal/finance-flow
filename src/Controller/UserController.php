@@ -13,6 +13,17 @@ class UserController{
         
     }
 
+    private function checkFormNotEmpty($posts){
+        
+        foreach ($posts as $post) {
+            if ($post == null || $post == '') {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////// Register //////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,8 +83,6 @@ class UserController{
                 
                 if($this->checkPasswordRegex($post['password'], $post['confirmPassword'])){
 
-                    // $post = htmlspecialchars(trim($post));
-
                     $post['password'] = password_hash($post['password'], PASSWORD_BCRYPT);
 
                     unset($post['confirmPassword']);
@@ -100,22 +109,71 @@ class UserController{
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////// LOGIN /////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    private function checkPasswordConnect($userName, $password){
+        $request = new UserModel();
+        $data = $request->requestGetDataUserName($userName);
+        if(is_array($data)){
+
+            if(password_verify($password, $data['password'])){
+                return true;
+            }else{
+                $this->msg = "<p class='error'>Identifiant ou mot de passe incorrect</p>";
+            }
+        }else{
+            $this->msg = "<p class='error'>Identifiant est incorrect</p>";
+        }
+
+    }
+
+    public function Login($post){
+        if($this->checkFormNotEmpty($post)){
+            if($this->checkPasswordConnect($post['userName'], $post['password'])){
+                $request = new UserModel();
+                $data = $request->requestGetDataUserName($post['userName']);
+
+                $userConnected = new UserController();
+
+                $userConnected->setId(intval($data['id']));
+                $userConnected->setUserName($data['userName']);
+                $userConnected->setImage($data['image']);
+                $userConnected->setPassword($data['password']);
+
+                $_SESSION['user'] = $userConnected;
+
+                $this->msg = "You are connected";
+            }
+        }else{
+            $this->msg = "<p class='error'>Fill all the fields. </p>";
+        }
+    }
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////// SETTERS //////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function setUserName($userName){
+    public function setId($id){
+        $this->id = $id;
+    }
+
+    public function setUserName($userName){
         $this->userName = $userName;
     }
 
-    function setImage($image){
+    public function setImage($image){
         $this->image = $image;
     }
 
-    function setPassword($password){
+    public function setPassword($password){
         $this->password = $password;
     }
 
-    function setMsg($msg){
+    public function setMsg($msg){
         $this->msg = $msg;
     }
 
@@ -123,20 +181,24 @@ class UserController{
     /////////////////////////////////////// GETTERS ///////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function getUserName(){
+    
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getUserName(){
         return $this->userName;
     }
 
-    function getImage(){
+    public function getImage(){
         return $this->image;
     }
 
-    function getPassword(){
+    public function getPassword(){
         return $this->password;
     }
 
-    function getMsg(){
+    public function getMsg(){
         return $this->msg;
     }
-
 }

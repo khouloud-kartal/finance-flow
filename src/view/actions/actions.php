@@ -19,3 +19,13 @@ if(isset($_GET['register'])){
     $user->Register($_POST, $_FILES['image']);
     echo $user->getMsg();
 }
+
+if(isset($_GET['login'])){
+
+    
+    $user->Login($_POST);
+    echo $user->getMsg();
+
+}
+
+// var_dump($_SESSION);
