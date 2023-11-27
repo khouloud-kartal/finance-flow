@@ -83,8 +83,6 @@ class UserController{
                 
                 if($this->checkPasswordRegex($post['password'], $post['confirmPassword'])){
 
-                    // $post = htmlspecialchars(trim($post));
-
                     $post['password'] = password_hash($post['password'], PASSWORD_BCRYPT);
 
                     unset($post['confirmPassword']);
