@@ -1,12 +1,14 @@
 
 import './assets/App.css'
 import Register from './Register';
+import Login from './login';
 
 function App() {
 
   return (
     <>
-      <Register></Register>
+      {/* <Register></Register> */}
+      <Login></Login>
     </>
   )
 }

@@ -21,3 +21,13 @@ if(isset($_GET['register'])){
     // var_dump($_FILES['image']);
     echo $user->getMsg();
 }
+
+if(isset($_GET['login'])){
+
+    
+    $user->Login($_POST);
+    echo $user->getMsg();
+
+}
+
+var_dump($_SESSION);

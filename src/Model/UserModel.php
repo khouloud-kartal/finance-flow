@@ -4,7 +4,7 @@ namespace App\model;
 
 class UserModel extends GlobalModel{
 
-    function requestCheckUserNameExists($userName){
+    public function requestCheckUserNameExists($userName){
         $request = $this->connect->prepare("SELECT * FROM user WHERE userName = :userName");
         $request->execute([':userName' => $userName]);
         $data = $request->rowCount();
@@ -20,5 +20,40 @@ class UserModel extends GlobalModel{
         ]);
 
         return $request;
+    }
+
+    public function requestCheckUserNameToConnect($userName){
+
+        $request = $this->connect->prepare("SELECT * FROM user WHERE userName = :userName"); 
+        $request->execute([':userName' => $userName]);
+        $count = $request->rowCount();
+
+        return $count;
+    }
+
+    public function requestCheckPasswordToConnect($userName, $password){
+
+        $request = $this->connect->prepare("SELECT * FROM user WHERE userName = :userName AND password = :password"); 
+        $request->execute(['userName' => $userName,
+                            'password' => $password]);
+        $data = $request->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function requestGetDataToConnect($userName){
+        $request = $this->connect->prepare("SELECT * FROM user WHERE userName = :userName"); 
+        $request->execute(['userName' => $userName]);
+        $data = $request->fetch(\PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function requestGetDataUserName($userName){
+        $request = $this->connect->prepare("SELECT * FROM user WHERE userName = :userName");
+        $request->execute([':userName' => $userName]);
+
+        $data = $request->fetch(\PDO::FETCH_ASSOC);
+        return $data;
     }
 }

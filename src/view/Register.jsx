@@ -7,7 +7,7 @@ const handleSubmit = async (e) => {
 
     console.log(image);
 
-    const form = document.getElementById('registerForm');
+    const form = e.target;
 
     const formData = new FormData(form);
     const response = await fetch('http://localhost/finance-flow/src/view/actions/actions.php?register=true', 
