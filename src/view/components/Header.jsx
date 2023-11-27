@@ -1,4 +1,5 @@
-function Header() {
+function Header({ onPageChange }) {
+
     return (
         <>
             <header>
@@ -7,6 +8,16 @@ function Header() {
                     <ul>
                         <li>
                             <a href="">Home
+                                <img src="" alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a onClick={() => onPageChange("register")}>Register
+                                <img src="" alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a onClick={() => onPageChange("login")}>Login
                                 <img src="" alt="" />
                             </a>
                         </li>

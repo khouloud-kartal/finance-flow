@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './assets/index.css';
 
-import Message from './Message';
+// import Message from './Message';
 
 function Login() {
 
@@ -21,7 +21,7 @@ function Login() {
 
     return (
       <>
-        <form action="/actions/actions.php" method="post" onSubmit={handleSubmit} id="loginForm">
+        <form action="/actions/actions.php" method="post" onSubmit={handleSubmit}>
 
             <label htmlFor="userName">User Name</label>
             <input type="text" placeholder="User Name" name="userName"/>
@@ -29,7 +29,7 @@ function Login() {
             <label htmlFor="password">Password</label>
             <input type="password" placeholder="password" name="password"/>
 
-            <button type="submit">Submit</button>
+            <button type="submit" name="submit">Submit</button>
             {/* <Message message={message}/> */}
             
         </form>

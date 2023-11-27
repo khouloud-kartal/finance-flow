@@ -3,32 +3,27 @@ import './assets/App.css';
 import React, { useState } from 'react';
 import Register from './Register';
 import Login from './login';
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './assets/App.css'
-// import Header from "./components/Header"
-// import TopBar from "./components/TopBar"
-// import Balance from "./components/Balance"
-// import CategoriesDisplay from "./components/CategoriesDisplay"
-// import AddTransaction from "./components/AddTrasaction"
-// import FourLastestTransaction from "./components/FourLastestTransaction"
 import Index from "./components/pages"
+import Header from "./components/Header";
 
 function App() {
 
+  const [page, setPage] = useState("");
 
-let index = <Index />
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
 
-  const [page, setPage] = useState(index);
-
-  const [main, setMain] = useState("");
-
-    return (
+  return (
     <>
-      {/* <Register></Register> */}
-      <Login></Login>
+      <Header onPageChange={handlePageChange}></Header>
+      {page === "" && <Index></Index>}
+      {page === "register" && <Register></Register>}
+      {page === "login" && <Login></Login>}
     </>
-    )
+  );
+
+    
 }
 
 export default App
